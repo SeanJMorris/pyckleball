@@ -1,4 +1,4 @@
-name: Debug scheduling of cron job
+name: Debugging with debug_action.py
 on: push
 # on:
 #   schedule:
@@ -43,4 +43,4 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python date_variables.py
+          python debug_action.py
