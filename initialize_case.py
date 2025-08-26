@@ -3,12 +3,14 @@ from typing import Literal
 from playwright.sync_api import sync_playwright, Page
 from dotenv import load_dotenv, find_dotenv
 
+from playwright_context_manager import start_playwright
 from page_objects.login_page import LoginPage
 from page_objects.dashboard import Dashboard
 
 
 def initialize_case(user_type: Literal["pro", "registrant"],
-                    headless: bool) -> Page:
+                    headless: bool,
+                    with_video: bool = False) -> Page:
 
     load_dotenv(find_dotenv(), override=True)
     if user_type == "pro":
@@ -21,13 +23,16 @@ def initialize_case(user_type: Literal["pro", "registrant"],
     if not username or not password:
         raise ValueError(f"Environment variables {username} and/or {password} are not set.")
 
-    playwright = sync_playwright().start()
-    if headless:
-        browser = playwright.chromium.launch(headless=True)
-    else:
-        browser = playwright.chromium.launch(headless=False, slow_mo=500)
+    # playwright = sync_playwright().start()
+    # if headless:
+    #     browser = playwright.chromium.launch(headless=True)
+    # else:
+    #     browser = playwright.chromium.launch(headless=False, slow_mo=500)
 
-    page = browser.new_page()
+    # page = browser.new_page()
+
+    page = start_playwright(headless=headless, with_video=with_video)
+
 
     # Login workflow
     login_page = LoginPage(page)
@@ -41,6 +46,8 @@ def initialize_case(user_type: Literal["pro", "registrant"],
 
 
 if __name__ == "__main__":
+    user_type = "pro"
     headless = False
-    page = initialize_case("pro", headless)
+    with_video = False
+    page = initialize_case(user_type=user_type, headless=headless, with_video=with_video)
     page.pause()

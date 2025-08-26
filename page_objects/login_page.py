@@ -6,7 +6,7 @@ from playwright.sync_api import Page, Locator
 class LoginPage:
     def __init__(self, page) -> None:
         self.page = page
-        self.page.goto("https://playtimescheduler.com/login.php")
+        # self.page.goto("https://playtimescheduler.com/login.php")
 
     def populate_email(self, email: str) -> None:
         # self.page.locator('input[name="email"]').fill(email)
