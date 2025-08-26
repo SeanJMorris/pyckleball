@@ -18,5 +18,5 @@ if __name__ == "__main__":
     case_day = datetime(2024, 8, 26, 21, 45)
     sign_up_moment = case_day - timedelta(days=1)
 
-    case_register(case_day, "registrant", headless, sign_up_moment)
+    # case_register(case_day, "registrant", headless, sign_up_moment)
     # case_deregister(case_day, "registrant", headless)

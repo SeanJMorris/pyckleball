@@ -2,7 +2,7 @@ from datetime import datetime
 import time
 from playwright.sync_api import expect
 
-from case_common import initialize_case
+from initialize_case import initialize_case
 from print_with_color import print_success, print_blue, print_yellow, print_red
 from date_variables import produce_case_day_strings, get_url_for_session_on
 from timer import Timer

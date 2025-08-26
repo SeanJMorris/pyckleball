@@ -1,7 +1,7 @@
 from datetime import datetime
 
 
-from case_common import initialize_case
+from initialize_case import initialize_case
 from print_with_color import print_success, print_blue
 from date_variables import produce_case_day_strings
 from timer import Timer

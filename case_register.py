@@ -2,7 +2,7 @@ from datetime import datetime
 from playwright.sync_api import expect
 import time
 
-from case_common import initialize_case
+from initialize_case import initialize_case
 from print_with_color import print_success, print_blue, print_yellow, print_red
 from date_variables import produce_case_day_strings, get_url_for_session_on
 from timer import Timer
@@ -12,7 +12,8 @@ from wait_until_sign_up_moment import wait_until_sign_up_moment
 def case_register(case_day_input: datetime,
                   user_type: str,
                   headless: bool,
-                  sign_up_moment: datetime = None):
+                  sign_up_moment: datetime = None,
+                  record_video: bool = False) -> None:
 
     yes_pause = not(headless)
     case_day_strings = produce_case_day_strings(case_day_input)
@@ -28,7 +29,6 @@ def case_register(case_day_input: datetime,
             page.get_by_role("button", name=case_day_strings["for_registering_list_mode"]).first.click()
         elif user_type == "registrant":
             page.get_by_role("button", name=case_day_strings['for_registering_bubble_mode']).first.click()
-
 
         if sign_up_moment is not None:
             timer.split()

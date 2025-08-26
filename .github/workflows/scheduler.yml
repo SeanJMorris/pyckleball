@@ -1,8 +1,7 @@
 name: Schedule run of hq.py
 on:
   schedule:
-    - cron: '15 1 * * *' # Every day at 23:00 UTC, which, in New York, is 7:00 PM the same day
-    # - cron: '30 0 * * *' # Every day at 00:30 UTC, which, in New York, is 8:30 PM the previous day
+    - cron: '54 2 * * 1' # Every day at 02:41 UTC, which, in New York, is 10:41 PM the previous day
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
@@ -39,5 +38,4 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python hq.py
-          # python date_variables.py
+          python date_variables.py
