@@ -1,7 +1,7 @@
 name: Schedule run of hq.py
 on:
   schedule:
-    - cron: '54 2 * * 1' # Every day at 02:41 UTC, which, in New York, is 10:41 PM the previous day
+    - cron: '54 2 * * *' # Runs daily at 02:54 UTC, which is 21:54 EST (previous day).
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}
