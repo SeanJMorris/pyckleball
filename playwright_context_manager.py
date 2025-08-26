@@ -1,5 +1,6 @@
-from playwright.sync_api import sync_playwright, Page, Playwright, BrowserContext
+from contextlib import contextmanager
 import time
+from playwright.sync_api import sync_playwright, Page, Playwright, BrowserContext
 
 class PlaywrightContextManager:
     """
@@ -70,20 +71,22 @@ class PlaywrightContextManager:
 #         self.page = self.context.new_page()
 #         return self.page
 
+@contextmanager
 def start_playwright(headless: bool = False,
                      with_video: bool = False) -> Page:
     # Create an instance of the context manager.
     # The 'with' statement will handle the setup and teardown automatically.
     # The 'page' variable will be the object returned by __enter__.
+    # with PlaywrightContextManager(headless=headless, with_video=with_video) as page:
     with PlaywrightContextManager(headless=headless, with_video=with_video) as page:
         url = "https://playtimescheduler.com/login.php"
         page.goto(url)
         page.wait_for_url(url)
-        return page
+        yield page
 
 if __name__ == "__main__":
     page = start_playwright(headless=False, with_video=False)
     print(f"Navigated to: {page.url}")
-    print("Filler for doing stuff.")
-    page.pause()
+    # print("Filler for doing stuff.")
     time.sleep(5)
+    # page.pause()
