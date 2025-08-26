@@ -15,7 +15,8 @@ def produce_case_day_strings(case_day: datetime):
     # Date string for registering in bubble or list mode - e.g. '1:45P'
     hmmAP  = case_day.strftime("%-I:%M%p")[:-1]
     for_registering_bubble_mode = "4.0-5.0 " + hmmAP
-    for_registering_list_mode = hmmAP + " : Bedford - John Glenn Middle School – 4.0-5.0"
+    # for_registering_list_mode = hmmAP + " : Bedford - John Glenn Middle School – 4.0-5.0"
+    for_registering_list_mode = "6:00P : Bedford - John Glenn Middle School – 4.0-5.0"
 
     return {
         'case_day': case_day,
@@ -62,17 +63,17 @@ def get_url_for_session_on(datetime_input: datetime):
 if __name__ == "__main__":
     ny_tz = timezone("America/New_York")
 
-    # print_blue("FOR RIGHT NOW")
-    # case_day = datetime.now(ny_tz)
-    # case_day_strings = produce_case_day_strings(case_day)
-    # print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
-    # print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
-    # print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
-    # print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
-    # print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
-    # print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
-    # print(f"UTC version of right now---------------------------------{case_day.astimezone(utc)}")
-    # print("")
+    print_blue("FOR RIGHT NOW")
+    case_day = datetime.now(ny_tz)
+    case_day_strings = produce_case_day_strings(case_day)
+    print(f"case_day_strings['my_session_string']--------------------{case_day_strings['my_session_string']}")
+    print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
+    print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
+    print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
+    print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
+    print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
+    print(f"UTC version of right now---------------------------------{case_day.astimezone(utc)}")
+    print("")
 
     # print_blue("FOR A CASE DAY IN THE PAST:")
     # case_day = datetime(1015, 10, 4, 13, 45)

@@ -43,7 +43,7 @@ jobs:
           uv sync
           python -m playwright install
 
-      - name: Run hq.py
+      - name: Run debug_action.py
         run: |
           source .venv/bin/activate
           python debug_action.py

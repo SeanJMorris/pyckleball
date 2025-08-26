@@ -28,4 +28,4 @@ if __name__ == "__main__":
     sign_up_moment = datetime.now() + timedelta(seconds=10)  # Set to 10 seconds in the future
     # print_blue(f"Sign-up moment set for----------------{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
     wait_until_sign_up_moment(sign_up_moment)
-    # print_blue(f"Sign up moment has arrived - it's-----{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
+    print_blue(f"Sign up moment has arrived - it's-----{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")

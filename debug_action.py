@@ -4,17 +4,12 @@ from print_with_color import print_blue
 
 
 ny_tz = timezone("America/New_York")
-case_day_ny_tz = datetime.now().astimezone(ny_tz)
-case_day_from_this_computer = datetime.now().astimezone(utc)
-
-case_day_ny_tz_formatted = datetime.now().astimezone(ny_tz)
-case_day_utc = datetime.now().astimezone(utc)
-
+case_day_ny_tz = datetime(2025, 8, 26, 19, 0).astimezone(ny_tz)
+# case_day_ny_tz = datetime.now().astimezone(ny_tz)
+case_day_utc = case_day_ny_tz.astimezone(utc)
 
 def datetime_formatter(datetime_input: datetime) -> str:
-    # date_string_to_print = datetime_input.strftime('%Y-%m-%d %I:%M %p %Z')
-    # produce string in this format: Tue, 26 Aug 2025 01:54:04 GMT
-    date_string_to_print = datetime_input.strftime('%a, %d %b %Y %I:%M:%S %Z')
+    date_string_to_print = datetime_input.strftime('%a, %d %b %Y %H:%M:%S %Z')  # Use %H for 24-hour format
     return date_string_to_print
 
 print_blue(f"case_day_utc:----------------------------------{datetime_formatter(case_day_utc)}")

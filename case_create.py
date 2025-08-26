@@ -45,8 +45,8 @@ def case_create(case_day_input: datetime,
     print_success(f"SUCCESS: Case_create.py created session for {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 10, 4, 13, 45)
+    case_day = datetime(2025, 8, 27, 19, 45)
     user_type = "pro"
-    headless_mode = True
-    sign_up_24_hr_advance = False
-    case_create(case_day, user_type, headless_mode, sign_up_24_hr_advance)
+    headless = True
+    sign_up_24_hr_advance = True
+    case_create(case_day, user_type, headless, sign_up_24_hr_advance)
