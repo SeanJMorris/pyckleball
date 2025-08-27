@@ -39,24 +39,12 @@ def day_next_sign_up_opp_24_hours() -> datetime:
         return tomorrow.replace(minute=next_interval, second=0, microsecond=0)
 
 def sign_up_today_for_session_in_24_hours() -> datetime:
-    ny_tz = timezone("America/New_York")
-    now = datetime.now(ny_tz)  # Use New York timezone
-    minutes = now.minute
-    next_interval = (minutes // 15 + 1) * 15
-    if next_interval == 60:
-        return now.replace(minute=0, second=1, microsecond=0) + timedelta(hours=1)
-    else:
-        return now.replace(minute=next_interval, second=1, microsecond=0)
-
-# def get_date_one_week_before_today(datetime_input: datetime):
-#     date_one_week_before_date_input = datetime_input - timedelta(weeks=1)
-#     return date_one_week_before_date_input.strftime("%Y-%m-%d")
+    return day_next_sign_up_opp_24_hours() - timedelta(days=1)
 
 def get_url_for_session_on(datetime_input: datetime):
     url_base = "https://playtimescheduler.com/index.php?go=next&startDate="
     date_one_week_before_date_input = datetime_input - timedelta(weeks=1)
     date_one_week_before_input_formatted = date_one_week_before_date_input.strftime("%Y-%m-%d")
-    # date_one_week_before_input_formatted = get_date_one_week_before_today(datetime_input)
     full_url = url_base + date_one_week_before_input_formatted
     return full_url
 

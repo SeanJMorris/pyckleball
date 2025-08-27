@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from pytz import timezone
+from pytz import timezone, utc
 from case_register import case_register
 from case_deregister import case_deregister
 from date_variables import day_next_sign_up_opp_24_hours, sign_up_today_for_session_in_24_hours
@@ -16,12 +16,18 @@ if __name__ == "__main__":
     # case_day = datetime(2025, 8, 25, 9, 15)
     # headless = True
     # sign_up_moment = datetime.now() + timedelta(seconds=30)
-    ny_tz = timezone("America/New_York")
-    case_day = datetime(2024, 8, 27, 19, 45).astimezone(ny_tz)
+    # ny_tz = timezone(utc)
+    # case_day = datetime(2025, 8, 27, 19, 45).astimezone(utc) # WE'RE GOING TO LEAVE THIS AS UTC FOR NOW
+    ny_timezone = timezone("America/New_York")
+    case_day = ny_timezone.localize(datetime(2025, 8, 27, 19, 45))
+    utc_timezone = timezone("UTC")
+    # case_day()
     user_type = "registrant"
     headless = True
     # sign_up_moment = case_day - timedelta(days=1)
-    sign_up_moment = datetime(2025, 8, 26, 21, 30).astimezone(ny_tz)
-
-    case_register(case_day, user_type, headless, sign_up_moment)
+    sign_up_moment = ny_timezone.localize(datetime(2025, 8, 26, 21, 30))
+    # sign_up_moment = utc_timezone.localize(datetime(2025, 8, 26, 21, 30))
+    print(case_day)
+    print(sign_up_moment)
+    # case_register(case_day, user_type, headless, sign_up_moment)
     # case_deregister(case_day, "registrant", headless)
