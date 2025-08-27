@@ -18,7 +18,7 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
     if time_to_wait > 0:
         print_blue(f"Waiting for {time_to_wait_formatted} seconds until sign-up moment at {sign_up_moment_formatted}.")
         time.sleep(time_to_wait)
-        print_blue(f"Sign-up moment has arrived----------{sign_up_moment_formatted}.")
+        print_blue(f"Sign-up moment has arrived! It's -------------------------{sign_up_moment_formatted}.")
     else:
         print_red(f"Sign-up moment {sign_up_moment_formatted} is in the past. No waiting needed.")
 
@@ -26,8 +26,9 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
 if __name__ == "__main__":
     # Example usage
     # sign_up_moment = datetime.now() + timedelta(seconds=10)  # Set to 10 seconds in the future
-    # ny_tz = timezone("America/New_York")
-    sign_up_moment = datetime(2025, 8, 26, 22, 30).astimezone(utc)
+    ny_timezone = timezone("America/New_York")
+    # utc_timezone = timezone("UTC")
+    sign_up_moment = ny_timezone.localize(datetime(2025, 8, 26, 22, 48))
     # print_blue(f"Sign-up moment set for----------------{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
     wait_until_sign_up_moment(sign_up_moment)
-    print_blue(f"Sign up moment has arrived - it's-----{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
+    # print_blue(f"Sign up moment has arrived - it's-----{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
