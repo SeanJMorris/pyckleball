@@ -18,5 +18,5 @@ if __name__ == "__main__":
     print(f"case_day          {case_day}")
     print(f"sign_up_moment:   {sign_up_moment}")
 
-    wait_until_sign_up_moment(sign_up_moment)
+    # wait_until_sign_up_moment(sign_up_moment)
     # case_register(case_day_input = case_day, user_type = user_type, headless = headless, sign_up_moment = sign_up_moment)
