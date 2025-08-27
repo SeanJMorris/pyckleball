@@ -2,7 +2,7 @@ name: Register user for session.
 # on: push
 on:
   schedule:
-    - cron: '20 18 * * *' # Runs daily at 18:20 UTC, which is 14:20 EST / 2:20 PM EST.
+    - cron: '15 20 * * *' # Runs daily at 20:15 UTC, which is 16:15 EST.
 env:
   PRO_USER_NAME: ${{ secrets.PRO_USER_NAME }}
   PRO_USER_PASSWORD: ${{ secrets.PRO_USER_PASSWORD }}

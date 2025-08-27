@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from pytz import timezone
 
 from initialize_case import initialize_case
 from print_with_color import print_success, print_blue
@@ -46,7 +46,9 @@ def case_create(case_day_input: datetime,
     logger.debug(f"SUCCESS: Case_create.py created session for {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 8, 28, 15, 0)
+    ny_timezone = timezone("America/New_York")
+    case_day = ny_timezone.localize(datetime(2025, 8, 28, 17, 15))
+    # case_day = datetime(2025, 8, 28, 15, 0)
     user_type = "pro"
     headless = True
     sign_up_24_hr_advance = True
