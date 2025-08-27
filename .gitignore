@@ -41,7 +41,7 @@ htmlcov/
 playwright-report/
 test-results/
 trace.zip
-videos/
+# videos/
 # screenshots/
 
 # Environment variables
