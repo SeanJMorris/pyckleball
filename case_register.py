@@ -1,5 +1,6 @@
 from datetime import datetime
 from playwright.sync_api import expect
+import time
 
 from initialize_case import initialize_case
 from print_with_color import print_success, print_blue, print_yellow, print_red
@@ -43,11 +44,18 @@ def case_register(case_day_input: datetime,
 
         if yes_pause: page.pause()
 
-        if user_type == "pro":
-            is_registered = page.locator("text=Sean Morris (4.0)").is_visible()
-        elif user_type == "registrant":
-            is_registered = page.locator("text=Mobley Hesperweld (4.0)").is_visible()
+        time.sleep(1)
 
+        if user_type == "pro":
+            # is_registered = page.locator("text=Sean Morris (4.0)").is_visible()
+            is_registered = "Sean Morris (4.0)" in page.get_by_role("rowgroup").inner_text()
+        elif user_type == "registrant":
+            # is_registered = page.locator("text=Mobley Hesperweld (4.0)").is_visible()
+            # is_registered = expect(page.get_by_role("rowgroup")).to_contain_text("Mobley Hesperweld (4.0)")
+            # Check if the text exists and return True or False
+            is_registered = "Mobley Hesperweld (4.0)" in page.get_by_role("rowgroup").inner_text()
+
+        # time.sleep(2)
         if is_registered:
             print_success(f"SUCCESS: User was added to the session on {notification_input}.")
         else:
@@ -56,11 +64,11 @@ def case_register(case_day_input: datetime,
         take_screenshot(page)
 
 if __name__ == "__main__":
-    ny_tz = timezone("America/New_York")
-    case_day = datetime(2025, 9, 2, 18, 25).astimezone(ny_tz)
-    user_type = "pro"
-    headless = False
+    ny_timezone = timezone("America/New_York")
+    case_day = ny_timezone.localize(datetime(2025, 8, 27, 19, 45))
+    user_type = "registrant"
+    headless = True
     # sign_up_moment = case_day - timedelta(days=7)
-    sign_up_moment = datetime(2025, 8, 26, 21, 0).astimezone(ny_tz)
-    # case_register(case_day, user_type, headless)
-    case_register(case_day, user_type, headless, sign_up_moment)
+    # sign_up_moment = datetime(2025, 8, 26, 21, 0).astimezone(ny_tz)
+    case_register(case_day, user_type, headless)
+    # case_register(case_day, user_type, headless, sign_up_moment)

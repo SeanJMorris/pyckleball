@@ -39,5 +39,4 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python debug_action.py
           python hq.py
