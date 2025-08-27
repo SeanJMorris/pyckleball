@@ -11,12 +11,12 @@ if __name__ == "__main__":
     case_day = ny_timezone.localize(datetime(2025, 8, 27, 19, 45))
     user_type = "registrant"
     headless = True
-    # sign_up_moment = ny_timezone.localize(datetime(2025, 8, 27, 0, 5))
-    sign_up_moment = ny_timezone.localize(datetime.now() + timedelta(seconds=10))
+    sign_up_moment = ny_timezone.localize(datetime(2025, 8, 27, 8, 40))
+    # sign_up_moment = ny_timezone.localize(datetime.now() + timedelta(seconds=10))
 
     # print("I'm expecting this script to start running immediately and wait until 12:05 AM NY time on 8/27/2025, which is UTC: 4:05 AM on 8/27/2025, to send me a message that it's the sign up moment.")
     print(f"case_day          {case_day}")
     print(f"sign_up_moment:   {sign_up_moment}")
 
-    # wait_until_sign_up_moment(sign_up_moment)
+    wait_until_sign_up_moment(sign_up_moment)
     # case_register(case_day_input = case_day, user_type = user_type, headless = headless, sign_up_moment = sign_up_moment)
