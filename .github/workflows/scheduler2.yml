@@ -14,29 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Create virtual environment
-        run: python -m venv .venv
-
-      - name: Activate virtual environment and install uv
-        run: |
-          source .venv/bin/activate
-          pip install --upgrade pip
-          pip install uv
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies with uv
         run: |
-          source .venv/bin/activate
           uv sync
+          source .venv/bin/activate
           python -m playwright install
 
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python hq.py
+          python debug_action.py
