@@ -26,7 +26,7 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
 if __name__ == "__main__":
     # Example usage
     ny_timezone = timezone("America/New_York")
-    sign_up_moment = ny_timezone.localize(datetime.now()) + timedelta(seconds=10)  # Set to 10 seconds in the future
+    sign_up_moment = ny_timezone.localize(datetime.now() + timedelta(seconds=10))  # Set to 10 seconds in the future
     # utc_timezone = timezone("UTC")
     # sign_up_moment = ny_timezone.localize(datetime(2025, 8, 26, 22, 48))
     # print_blue(f"Sign-up moment set for----------------{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
