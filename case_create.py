@@ -6,6 +6,7 @@ from print_with_color import print_success, print_blue
 from date_variables import produce_case_day_strings
 from timer import Timer
 from date_picker_handler import date_picker_handler
+from utilities.logger import logger
 
 def case_create(case_day_input: datetime,
                 user_type: str,
@@ -15,7 +16,7 @@ def case_create(case_day_input: datetime,
     yes_pause = not(headless)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
-    print_blue(f"ATTEMPT: Case_create.py is creating pro session for {notification_input}.")
+    logger.debug(f"ATTEMPT: Case_create.py is creating pro session for {notification_input}.")
 
     with Timer() as timer:
         page = initialize_case("pro", headless)
@@ -42,10 +43,10 @@ def case_create(case_day_input: datetime,
         page.get_by_role("checkbox", name="I acknowledge that a play").check()
         if yes_pause: page.pause()
         page.get_by_role("button", name="Add Session").click()
-    print_success(f"SUCCESS: Case_create.py created session for {notification_input}.")
+    logger.debug(f"SUCCESS: Case_create.py created session for {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 8, 28,9, 30)
+    case_day = datetime(2025, 8, 28, 15, 0)
     user_type = "pro"
     headless = True
     sign_up_24_hr_advance = True

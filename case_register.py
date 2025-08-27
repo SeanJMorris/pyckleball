@@ -20,7 +20,6 @@ def case_register(case_day_input: datetime,
     yes_pause = not(headless)
     case_day_strings = produce_case_day_strings(case_day_input)
     notification_input = case_day_strings["my_session_string"]
-    # print_blue(f"ATTEMPT: Case_register.py is adding user to session on {notification_input}.")
     logger.debug(f"ATTEMPT: Case_register.py is adding user to session on {notification_input}.")
 
     with Timer() as timer:
