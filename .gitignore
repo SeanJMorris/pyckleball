@@ -42,7 +42,7 @@ playwright-report/
 test-results/
 trace.zip
 videos/
-screenshots/
+# screenshots/
 
 # Environment variables
 .env

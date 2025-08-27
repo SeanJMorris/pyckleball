@@ -4,8 +4,8 @@ from print_with_color import print_blue
 
 
 ny_tz = timezone("America/New_York")
-case_day_ny_tz = datetime(2025, 8, 26, 19, 0).astimezone(ny_tz)
-# case_day_ny_tz = datetime.now().astimezone(ny_tz)
+# case_day_ny_tz = datetime(2025, 8, 26, 19, 0).astimezone(ny_tz)
+case_day_ny_tz = datetime.now().astimezone(ny_tz)
 case_day_utc = case_day_ny_tz.astimezone(utc)
 
 def datetime_formatter(datetime_input: datetime) -> str:

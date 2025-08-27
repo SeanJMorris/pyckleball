@@ -60,6 +60,7 @@ if __name__ == "__main__":
     case_day = datetime(2025, 9, 2, 18, 25).astimezone(ny_tz)
     user_type = "pro"
     headless = False
-    sign_up_moment = case_day - timedelta(days=7)
+    # sign_up_moment = case_day - timedelta(days=7)
+    sign_up_moment = datetime(2025, 8, 26, 21, 0).astimezone(ny_tz)
     # case_register(case_day, user_type, headless)
     case_register(case_day, user_type, headless, sign_up_moment)
