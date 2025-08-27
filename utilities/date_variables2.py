@@ -45,6 +45,12 @@ def day_next_sign_up_opp_24_hours() -> datetime:
     else:
         return tomorrow.replace(minute=next_interval, second=0, microsecond=0)
 
+def one_week_from_today() -> datetime:
+    ny_tz = timezone("America/New_York")
+    now = datetime.now(ny_tz)  # Use New York timezone
+    one_week_from_today = now + timedelta(days=7)
+    return one_week_from_today
+
 def sign_up_today_for_session_in_24_hours() -> datetime:
     return day_next_sign_up_opp_24_hours() - timedelta(days=1)
 
