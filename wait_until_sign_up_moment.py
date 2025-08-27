@@ -11,7 +11,7 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
     """
     # ny_tz = timezone("America/New_York")
     current_time = datetime.now(utc)
-    time_to_wait = (sign_up_moment - current_time).total_seconds() + 1
+    time_to_wait = (sign_up_moment - current_time).total_seconds() + .25
     time_to_wait_formatted = f"{round(time_to_wait)}"  # Round to the nearest whole number
     sign_up_moment_formatted = sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')
 
@@ -25,10 +25,10 @@ def wait_until_sign_up_moment(sign_up_moment: datetime):
 
 if __name__ == "__main__":
     # Example usage
-    # sign_up_moment = datetime.now() + timedelta(seconds=10)  # Set to 10 seconds in the future
     ny_timezone = timezone("America/New_York")
+    sign_up_moment = ny_timezone.localize(datetime.now()) + timedelta(seconds=10)  # Set to 10 seconds in the future
     # utc_timezone = timezone("UTC")
-    sign_up_moment = ny_timezone.localize(datetime(2025, 8, 26, 22, 48))
+    # sign_up_moment = ny_timezone.localize(datetime(2025, 8, 26, 22, 48))
     # print_blue(f"Sign-up moment set for----------------{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")
     wait_until_sign_up_moment(sign_up_moment)
     # print_blue(f"Sign up moment has arrived - it's-----{sign_up_moment.strftime('%m/%d/%y %I:%M:%S %p')}")

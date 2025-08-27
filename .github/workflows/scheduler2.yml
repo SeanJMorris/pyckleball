@@ -1,4 +1,4 @@
-name: Hugo's update
+name: Register user for session.
 on: push
 # on:
 #   schedule:
@@ -33,4 +33,4 @@ jobs:
       - name: Run hq.py
         run: |
           source .venv/bin/activate
-          python debug_action.py
+          python hq.py

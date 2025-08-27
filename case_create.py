@@ -45,7 +45,7 @@ def case_create(case_day_input: datetime,
     print_success(f"SUCCESS: Case_create.py created session for {notification_input}.")
 
 if __name__ == "__main__":
-    case_day = datetime(2025, 8, 27, 19, 45)
+    case_day = datetime(2025, 8, 28,9, 30)
     user_type = "pro"
     headless = True
     sign_up_24_hr_advance = True
