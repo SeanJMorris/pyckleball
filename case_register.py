@@ -5,7 +5,7 @@ import time
 from utilities.logger import logger
 from initialize_case import initialize_case
 from print_with_color import print_success, print_blue, print_yellow, print_red
-from date_variables import produce_case_day_strings, get_url_for_session_on
+from date_variables import produce_case_day_strings, get_url_for_session_on, today_at_given_time
 from timer import Timer
 from datetime import datetime, timedelta
 from pytz import timezone
@@ -15,9 +15,14 @@ from screenshots.screenshot_util import take_screenshot
 
 def access_session_to_sign_up(page: Page, user_type, case_day_strings):
     if user_type == "pro":
-        page.get_by_role("button", name=case_day_strings["for_registering_list_mode"]).first.click()
+        # page.get_by_role("button", name=case_day_strings["for_registering_list_mode"]).first.click()
+        page.locator("button", has_text="Bedford - John Glenn Middle School – 4.0-").first.click()
     elif user_type == "registrant":
-        page.get_by_role("button", name=case_day_strings['for_registering_bubble_mode']).first.click()
+        # page.pause()
+        page.get_by_role("button", name=case_day_strings["for_registering_bubble_mode"]).first.click()
+        # target_buttons = page.locator('button:has-text("4.0-5.0")')
+        # final_locator = target_buttons.filter(has_text="6:")
+        # final_locator.first.click()
 
 def validate_user_added(page: Page, user_type: str) -> bool:
     if user_type == "pro":
@@ -45,6 +50,34 @@ def case_register(case_day_input: datetime,
         page = initialize_case(user_type, headless)
         page.goto(get_url_for_session_on(case_day_input))
         # if yes_pause: page.pause()
+
+        # Determine the sign-up time
+
+        # Click on the first element containing the desired text
+        # page.get_by_role("button", name="\" / \" 6:45P : Bedford - John Glenn Middle School – 4.0-").click()
+
+        if user_type == "pro":
+            parent_locator = page.locator("button", has_text="Bedford - John Glenn Middle School – 4.0-").first
+            strong_element_locator = parent_locator.locator("strong")
+            strong_tag_text = strong_element_locator.inner_text()
+            strong_tag_text_clean = strong_tag_text[:-1]
+            print(strong_tag_text)
+            print(strong_tag_text_clean)
+            hour_string = strong_tag_text_clean.split(":")[0]
+            minute_string = strong_tag_text_clean.split(":")[1]
+            if "P" in strong_tag_text:
+                hour_integer_24 = int(hour_string) + 12
+            else:
+                hour_integer_24 = int(hour_string)
+
+            minute_integer = int(minute_string)
+            print(f"Hour (24 hr): {hour_integer_24}, Minute: {minute_integer}")
+
+            sign_up_moment = today_at_given_time(hour_integer_24, minute_integer)
+            page.pause()
+        elif user_type == "registrant":
+            sign_up_moment = today_at_given_time(18, 0)
+
 
         if sign_up_moment is not None:
             timer.split()
@@ -74,7 +107,11 @@ def case_register(case_day_input: datetime,
 
 if __name__ == "__main__":
     ny_timezone = timezone("America/New_York")
-    case_day = ny_timezone.localize(datetime(2025, 8, 27, 17, 15))
-    user_type = "registrant"
-    headless = True
+    case_day = ny_timezone.localize(datetime(2025, 11, 4, 18, 0))
+    user_type = "pro"
+    headless = False
     case_register(case_day, user_type, headless)
+
+    # user_type = "registrant"
+    # headless = False
+    # case_register(case_day, user_type, headless)

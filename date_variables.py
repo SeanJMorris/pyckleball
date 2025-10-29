@@ -16,15 +16,15 @@ def produce_case_day_strings(case_day: datetime):
     hmmAP  = case_day.strftime("%-I:%M%p")[:-1]
     for_registering_bubble_mode = "4.0-5.0 " + hmmAP
     # for_registering_list_mode = hmmAP + " : Bedford - John Glenn Middle School – 4.0-5.0"
-    for_registering_list_mode = "6:00P : Bedford - John Glenn Middle School – 4.0-5.0"
+    # for_registering_list_mode = "6:00P : Bedford - John Glenn Middle School – 4.0-5.0"
 
     return {
         'case_day': case_day,
         'add_session_start_time': add_session_start_time,
         'add_session_end_time': add_session_end_time,
         'my_session_string': my_session_string,
-        'for_registering_bubble_mode': for_registering_bubble_mode,
-        'for_registering_list_mode': for_registering_list_mode
+        'for_registering_bubble_mode': for_registering_bubble_mode
+        # 'for_registering_list_mode': for_registering_list_mode
     }
 
 def day_next_sign_up_opp_24_hours() -> datetime:
@@ -44,6 +44,20 @@ def one_week_from_today_at_6pm() -> datetime:
     one_week_from_today = now + timedelta(days=7)
     one_week_from_today_at_6pm = one_week_from_today.replace(hour=18, minute=0, second=0, microsecond=0)
     return one_week_from_today_at_6pm
+
+def one_week_from_today() -> datetime:
+    ny_tz = timezone("America/New_York")
+    now = datetime.now(ny_tz)  # Use New York timezone
+    one_week_from_today = now + timedelta(days=7)
+    return one_week_from_today
+
+def today_at_given_time(hours_base_24, minutes) -> datetime:
+    ny_tz = timezone("America/New_York")
+    now = datetime.now(ny_tz)  # Use New York timezone
+    today = now
+    # one_week_from_today_at_given_time = one_week_from_today.replace(hour=18, minute=45, second=0, microsecond=0)
+    today_at_given_time = today.replace(hour=hours_base_24, minute=minutes, second=0, microsecond=0)
+    return today_at_given_time
 
 def sign_up_today_for_session_in_24_hours() -> datetime:
     return day_next_sign_up_opp_24_hours() - timedelta(days=1)
@@ -65,7 +79,7 @@ if __name__ == "__main__":
     print(f"case_day_strings['add_session_start_time']---------------{case_day_strings['add_session_start_time']}")
     print(f"case_day_strings['add_session_end_time']-----------------{case_day_strings['add_session_end_time']}")
     print(f"case_day_strings['for_registering_bubble_mode']----------{case_day_strings['for_registering_bubble_mode']}")
-    print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
+    # print(f"case_day_strings['for_registering_list_mode']------------{case_day_strings['for_registering_list_mode']}")
     print(f"get_url_for_session_on(case_day)-------------------------{get_url_for_session_on(case_day)}")
     print(f"UTC version of right now---------------------------------{case_day.astimezone(utc)}")
     print("")

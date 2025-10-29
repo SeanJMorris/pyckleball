@@ -29,6 +29,7 @@ Thumbs.db
 *.bak
 *.swp
 *.swo
+*~
 
 # Test coverage reports
 htmlcov/
