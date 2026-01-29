@@ -62,11 +62,11 @@ if __name__ == "__main__":
         page = context.new_page()
         page.goto("https://playtimescheduler.com/index.php")
 
-        dashboard = Login(page)
-        dashboard.deal_with_modal_popups()
+        # dashboard = Login(page)
+        # dashboard.deal_with_modal_popups()
         # dashboard.select_session(datetime(2023, 10, 5, 19, 30), "pro")
         # dashboard.session_modal_is_present()
-        dashboard.click_first_shown_session()
+        # dashboard.click_first_shown_session()
         # Keep the browser open for a while to observe the result
-        page.wait_for_timeout(5000)
-        browser.close()
+        # page.wait_for_timeout(5000)
+        # browser.close()
