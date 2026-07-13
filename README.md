@@ -1,6 +1,7 @@
 # Pyckleball
 
-Pycleball is bot I made to sign up for Pickleball court time with friends.
+Pycleball is a Playwright bot I made to sign up for Pickleball court time with
+friends.
 
 ## Background
 
